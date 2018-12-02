@@ -1,3 +1,4 @@
 rootProject.name = 'tpps'
 include 'lab2'
+include 'lab3'
 

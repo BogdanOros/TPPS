@@ -1,7 +1,7 @@
 3
-Italy 1 4 4 5
+Italy 1 4 4 6
 Spain 3 1 6 3
-Portugal 1 1 2 1
+Portugal 1 1 2 2
 1
 Luxembourg 1 1 1 1
 2

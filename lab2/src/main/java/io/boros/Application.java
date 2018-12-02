@@ -43,6 +43,7 @@ public class Application {
         List<Simulation.SimulationResults> results = cases.stream()
                 .map(Simulation::new)
                 .map(Simulation::simulate)
+                .parallel()
                 .collect(Collectors.toList());
 
         try (PrintWriter out = new PrintWriter("out.txt")) {
