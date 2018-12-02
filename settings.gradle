@@ -1,0 +1,3 @@
+rootProject.name = 'tpps'
+include 'lab2'
+
