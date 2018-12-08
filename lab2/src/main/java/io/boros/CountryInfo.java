@@ -94,7 +94,7 @@ class CountryInfo implements Comparable<CountryInfo> {
             for (int y = 0; y < MAX_Y; y++) {
                 int amountToTransport = currentMatrix[x][y] / PER_DAY;
                 int numberOfSuccessfulTransportation =
-                        transportToNeighbors(nextDayMatrix, x, y, amountToTransport);
+                        transferToNeighbors(nextDayMatrix, x, y, amountToTransport);
                 nextDayMatrix[x][y] += currentMatrix[x][y] - numberOfSuccessfulTransportation * amountToTransport;
             }
         }
@@ -106,7 +106,7 @@ class CountryInfo implements Comparable<CountryInfo> {
         currentMatrix = nextDayMatrix;
     }
 
-    private int transportToNeighbors(int[][] matrix, int x, int y, int amountToTransport) {
+    private int transferToNeighbors(int[][] matrix, int x, int y, int amountToTransport) {
         int numberOfSuccessfulTransportation = 0;
 
         if (checkIsCityAvailable(x - 1, y) && amountToTransport > 0) {
