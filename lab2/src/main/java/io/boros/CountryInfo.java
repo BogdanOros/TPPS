@@ -13,7 +13,7 @@ class CountryInfo implements Comparable<CountryInfo> {
     private static final int PER_DAY = 1_000;
 
     private int[][] currentMatrix;
-    boolean[][] matrixOfEUCountries;
+    boolean[][] matrixOfCountries;
 
     volatile boolean isComplete;
     int numberOfDays = 0;
@@ -132,7 +132,7 @@ class CountryInfo implements Comparable<CountryInfo> {
         if (x < 0 || y < 0 || x >= MAX_X || y >= MAX_Y) {
             return false;
         }
-        return matrixOfEUCountries[x][y];
+        return matrixOfCountries[x][y];
     }
 
     boolean hasCityCoins(int x, int y) {

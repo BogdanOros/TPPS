@@ -14,23 +14,23 @@ class Simulation {
         }
         this.countries = countries;
 
-        boolean[][] matrixOfEUCountries = fillMatrixOfEUCountries();
+        boolean[][] matrixOfCountries = fillMatrixOfCountries();
 
         for (CountryInfo countryInfo : countries) {
-            countryInfo.matrixOfEUCountries = matrixOfEUCountries;
+            countryInfo.matrixOfCountries = matrixOfCountries;
         }
     }
 
-    private boolean[][] fillMatrixOfEUCountries() {
-        boolean[][] matrixOfEUCountries = new boolean[CountryInfo.MAX_X][CountryInfo.MAX_Y];
+    private boolean[][] fillMatrixOfCountries() {
+        boolean[][] matrixOfCountries = new boolean[CountryInfo.MAX_X][CountryInfo.MAX_Y];
         for (CountryInfo country : countries) {
             for (int x = country.xl; x <= country.xh; x++) {
                 for (int y = country.yl; y <= country.yh; y++) {
-                    matrixOfEUCountries[x][y] = true;
+                    matrixOfCountries[x][y] = true;
                 }
             }
         }
-        return matrixOfEUCountries;
+        return matrixOfCountries;
     }
 
     SimulationResults simulate() {
