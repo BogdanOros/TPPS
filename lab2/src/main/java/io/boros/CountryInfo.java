@@ -2,6 +2,8 @@ package io.boros;
 
 import java.util.Objects;
 
+import static java.lang.String.format;
+
 class CountryInfo implements Comparable<CountryInfo> {
 
     static final int MAX_X = 10;
@@ -13,7 +15,7 @@ class CountryInfo implements Comparable<CountryInfo> {
     private int[][] currentMatrix;
     boolean[][] matrixOfEUCountries;
 
-    boolean isComplete;
+    volatile boolean isComplete;
     int numberOfDays = 0;
 
     String name;
@@ -28,19 +30,39 @@ class CountryInfo implements Comparable<CountryInfo> {
             throw new IllegalArgumentException("Name cannot be longer then 25");
         }
         if (xl >= MAX_X || xl < 1) {
-            throw new IllegalArgumentException("xl in incorrect bounds");
+            throw new IllegalArgumentException(
+                    format("Country %s. xl in incorrect bounds: expected between %d %d, received: %d", name, 1, MAX_X, xl)
+            );
         }
 
         if (yl >= MAX_Y || yl < 1) {
-            throw new IllegalArgumentException("yl in incorrect bounds");
+            throw new IllegalArgumentException(
+                    format("Country %s. yl in incorrect bounds: expected between %d %d, received: %d", name, 1, MAX_Y, yl)
+            );
         }
 
         if (xh >= MAX_X || xh < 1) {
-            throw new IllegalArgumentException("xh in incorrect bounds");
+            throw new IllegalArgumentException(
+                    format("Country %s. xh in incorrect bounds: expected between %d %d, received: %d", name, 1, MAX_X, xh)
+            );
         }
 
         if (yh >= MAX_Y || yh < 1) {
-            throw new IllegalArgumentException("yh in incorrect bounds");
+            throw new IllegalArgumentException(
+                    format("Country %s. yh in incorrect bounds: expected between %d %d, received: %d", name, 1, MAX_Y, yh)
+            );
+        }
+
+        if (xl > xh) {
+            throw new IllegalArgumentException(
+                    format("Country %s. xl cannot be more then xh. yl: %d, xh: %d", name, xl, xh)
+            );
+        }
+
+        if (yl > yh) {
+            throw new IllegalArgumentException(
+                    format("Country %s. yl cannot be more then yh. yl: %d, yh: %d", name, yl, yh)
+            );
         }
 
         this.name = name;
@@ -78,6 +100,7 @@ class CountryInfo implements Comparable<CountryInfo> {
         }
 
         if (!isComplete) {
+            System.out.println(numberOfDays);
             numberOfDays++;
         }
         currentMatrix = nextDayMatrix;
