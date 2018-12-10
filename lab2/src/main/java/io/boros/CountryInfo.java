@@ -109,6 +109,10 @@ class CountryInfo implements Comparable<CountryInfo> {
     private int transferToNeighbors(int[][] matrix, int x, int y, int amountToTransport) {
         int numberOfSuccessfulTransportation = 0;
 
+        if (amountToTransport <= 0) {
+            return 0;
+        }
+
         numberOfSuccessfulTransportation += transferToNeighbor(matrix, x - 1, y, amountToTransport);
         numberOfSuccessfulTransportation += transferToNeighbor(matrix, x, y - 1, amountToTransport);
         numberOfSuccessfulTransportation += transferToNeighbor(matrix, x + 1, y, amountToTransport);
