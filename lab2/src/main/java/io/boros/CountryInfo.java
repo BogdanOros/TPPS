@@ -109,23 +109,20 @@ class CountryInfo implements Comparable<CountryInfo> {
     private int transferToNeighbors(int[][] matrix, int x, int y, int amountToTransport) {
         int numberOfSuccessfulTransportation = 0;
 
-        if (checkIsCityAvailable(x - 1, y) && amountToTransport > 0) {
-            matrix[x - 1][y] += amountToTransport;
-            numberOfSuccessfulTransportation++;
-        }
-        if (checkIsCityAvailable(x, y - 1) && amountToTransport > 0) {
-            matrix[x][y - 1] += amountToTransport;
-            numberOfSuccessfulTransportation++;
-        }
-        if (checkIsCityAvailable(x + 1, y) && amountToTransport > 0) {
-            matrix[x + 1][y] += amountToTransport;
-            numberOfSuccessfulTransportation++;
-        }
-        if (checkIsCityAvailable(x, y + 1) && amountToTransport > 0) {
-            matrix[x][y + 1] += amountToTransport;
-            numberOfSuccessfulTransportation++;
-        }
+        numberOfSuccessfulTransportation += transferToNeighbor(matrix, x - 1, y, amountToTransport);
+        numberOfSuccessfulTransportation += transferToNeighbor(matrix, x, y - 1, amountToTransport);
+        numberOfSuccessfulTransportation += transferToNeighbor(matrix, x + 1, y, amountToTransport);
+        numberOfSuccessfulTransportation += transferToNeighbor(matrix, x, y + 1, amountToTransport);
+
         return numberOfSuccessfulTransportation;
+    }
+
+    private int transferToNeighbor(int[][] matrix, int x, int y, int amountToTransport) {
+        if (checkIsCityAvailable(x, y) && amountToTransport > 0) {
+            matrix[x][y] += amountToTransport;
+            return 1;
+        }
+        return 0;
     }
 
     private boolean checkIsCityAvailable(int x, int y) {
