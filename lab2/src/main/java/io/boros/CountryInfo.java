@@ -122,7 +122,7 @@ class CountryInfo implements Comparable<CountryInfo> {
     }
 
     private int transferToNeighbor(int[][] matrix, int x, int y, int amountToTransport) {
-        if (checkIsCityAvailable(x, y) && amountToTransport > 0) {
+        if (checkIsCityAvailable(x, y)) {
             matrix[x][y] += amountToTransport;
             return 1;
         }
