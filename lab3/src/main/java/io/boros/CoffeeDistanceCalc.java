@@ -78,7 +78,7 @@ public class CoffeeDistanceCalc {
         System.out.println();
     }
 
-    private CoffeePoint maxPoint(int[][] m) {
+    public CoffeePoint maxPoint(int[][] m) {
         int xMax = 0;
         int yMax = 0;
         int max = m[xMax][yMax];
